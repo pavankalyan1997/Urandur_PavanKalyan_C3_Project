@@ -67,7 +67,7 @@ class RestaurantTest {
 
     // Failing Test for TDD Task
     @Test
-    public void fetch_total_price_of_selected_items_should_be_388() {
+    public void fetch_total_price_of_selected_items_should_be_388() throws itemNotFoundException {
         int actualOrderPrice = restaurant.calculateOrderPrice(Arrays.asList("Sweet corn soup", "Vegetable lasagne"));
         assertEquals(388, actualOrderPrice);
     }
