@@ -2,10 +2,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,4 +64,18 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // Failing Test for TDD Task
+    @Test
+    public void fetch_total_price_of_selected_items_should_be_388() {
+        int actualOrderPrice = restaurant.calculateOrderPrice(Arrays.asList("Sweet corn soup", "Vegetable lasagne"));
+        assertEquals(388, actualOrderPrice);
+    }
+
+    @Test
+    public void fetch_total_price_of_selected_items_should_throw_exception(){
+        itemNotFoundException itemNotFoundException = assertThrows(itemNotFoundException.class,
+                () -> restaurant.calculateOrderPrice(Arrays.asList("Sweet corn soup", "Apricot Delight")));
+        assertEquals("Apricot Delight",itemNotFoundException.getMessage());
+    }
 }
