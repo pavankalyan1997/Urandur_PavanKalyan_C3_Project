@@ -1,7 +1,6 @@
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Restaurant {
     private String name;
@@ -67,4 +66,15 @@ public class Restaurant {
         return name;
     }
 
+    public int calculateOrderPrice(List<String> itemsList) throws itemNotFoundException {
+       int price = 0;
+       for(String itemName: itemsList){
+           Item item = findItemByName(itemName);
+           if(item == null){
+               throw new itemNotFoundException(itemName);
+           }
+           price += item.getPrice();
+       }
+       return price;
+    }
 }
